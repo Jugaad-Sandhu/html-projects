@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -14,7 +14,7 @@
         }
 
         body { 
-            font-family: 'Inter', -apple-system, sans-serif; 
+            font-family: 'Inter', sans-serif; 
             margin: 0; background: var(--dark); color: var(--text); 
             line-height: 1.6; overflow-x: hidden;
         }
@@ -29,11 +29,11 @@
 
         .bar-logo { 
             font-size: 1.5rem; font-weight: 800; text-transform: uppercase; 
-            text-decoration: none; color: #fff; letter-spacing: -1px;
+            text-decoration: none; color: #fff; letter-spacing: -1px; flex: 1;
         }
         .bar-logo span { color: var(--primary); }
 
-        .nav-menu { display: flex; gap: 30px; }
+        .nav-menu { display: flex; justify-content: center; gap: 30px; flex: 2; }
         .nav-btn { 
             background: none; border: none; color: #aaa; font-weight: 600; 
             text-transform: uppercase; cursor: pointer; font-size: 0.85rem; 
@@ -47,12 +47,13 @@
             border-bottom: 3px solid var(--primary); 
         }
 
+        .icon-container { flex: 1; display: flex; justify-content: flex-end; }
         .guest-icon { 
             width: 45px; height: 45px; border-radius: 50%; 
             border: 2px solid var(--primary); cursor: pointer; 
             object-fit: cover; transition: 0.4s ease;
             box-shadow: 0 0 15px rgba(255, 75, 43, 0.3);
-            background: #252525; /* Shows a dark circle even if image fails */
+            background: black; /* Solid black background for the icon */
         }
 
         header { 
@@ -73,6 +74,7 @@
             background: var(--glass); max-width: 1000px; margin: 0 auto; padding: 50px; 
             border-radius: 24px; border: 1px solid rgba(255,255,255,0.1);
             box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            text-align: left;
         }
 
         .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
@@ -85,7 +87,7 @@
 
         .form-container { 
             background: #1a1a1a; max-width: 400px; margin: 40px auto; padding: 50px; 
-            border-radius: 30px; position: relative; border: 1px solid var(--primary);
+            border-radius: 30px; position: relative; border: 1px solid var(--primary); text-align: center;
         }
         .submit-btn { 
             width: 100%; padding: 18px; border: none; border-radius: 12px; 
@@ -100,7 +102,6 @@
             width: 100%; padding: 15px; margin: 15px 0; background: #252525; 
             border: 1px solid #444; border-radius: 12px; color: #fff; font-size: 1rem;
         }
-        .error-input::placeholder { color: var(--primary); }
 
         .profile-main-img { width: 150px; height: 150px; border-radius: 50%; border: 5px solid var(--primary); object-fit: cover; }
         .plus-btn { 
@@ -108,45 +109,53 @@
             width: 40px; height: 40px; border-radius: 50%; font-size: 24px;
             position: absolute; bottom: 5px; right: 5px; cursor: pointer;
         }
+
+        .signout-btn {
+            background: #333; color: #fff; border: 1px solid #444; padding: 10px 20px;
+            border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 20px;
+            text-transform: uppercase; transition: 0.3s;
+        }
+        .signout-btn:hover { background: var(--primary); border-color: var(--primary); }
     </style>
 </head>
 <body>
 
     <div class="top-bar">
         <a href="#" onclick="showPage('home')" class="bar-logo">Obesity<span>Sucks</span></a>
+        
         <div class="nav-menu">
             <button class="nav-btn active-tab" id="btn-home" onclick="showPage('home')">Home</button>
             <button class="nav-btn" id="btn-solutions" onclick="showPage('solutions')">Solutions</button>
             <button class="nav-btn" id="btn-help" onclick="showPage('help')">Help Us</button>
             <button class="nav-btn" id="btn-aware" onclick="showPage('aware')">Be Aware</button>
         </div>
-        
-        <!-- FIXED IMAGE BLOCK: 3 Fallbacks to ensure it shows -->
-        <img src="https://ui-avatars.com" 
-             class="guest-icon" 
-             id="nav-icon" 
-             onerror="this.onerror=null; this.src='https://w3schools.com'; if(!this.src) this.src='https://flaticon.com';"
-             onclick="handleIconClick()">
+
+        <div class="icon-container">
+            <img src="https://www.shutterstock.com/image-vector/user-profile-icon-social-media-260nw-2452460729.jpg" 
+                 class="guest-icon" 
+                 id="nav-icon" 
+                 onclick="handleIconClick()">
+        </div>
     </div>
 
     <div id="home" class="page active">
         <header>
             <h1 class="big-title">Obesity<span>Sucks</span></h1>
-            <p style="font-size: 1.2rem; color: #888;"> Welcome to the ObesitySucks app.</p>
+            <p style="font-size: 1.2rem; color: #888;">Obesity can cause dangeruos things to happen to you.</p>
         </header>
         <div class="content-card" style="text-align: center;">
-            <h2>Help with Obesity</h2>
-            <p style="color: #bbb; max-width: 600px; margin: 0 auto;">Obesity is a bad thing. This can help you learn why is is bad.</p>
+            <h2>Obesity Is Bad</h2>
+            <p style="color: #bbb; max-width: 600px; margin: 0 auto;">Obesity is not good for the world. We need to work together to solve it.</p>
         </div>
     </div>
 
     <div id="solutions" class="page">
         <div class="content-card">
-            <h1 style="font-size: 3rem;">SOME <span>SOLUTIONS</span></h1>
+            <h1 style="font-size: 3rem;">THE <span>SOLUTIONS</span></h1>
             <div class="grid-container">
-                <div class="info-box"><h3>Fasting</h3><p>Control how much you eat. Do not eat to much food.</p></div>
-                <div class="info-box"><h3>Strength Training</h3><p>Do workouts for 20-25 minutes every other day. turn your obesity int muscles.</p></div>
-                <div class="info-box"><h3>Eat Nutrients</h3><p>Eat foods that have Nutrients. do not eat junk food or bad food with less Nutrients. This will help you with obesity problems.</p></div>
+                <div class="info-box"><h3>Fasting</h3><p>Stop eating to much. Limit how much you eat.</p></div>
+                <div class="info-box"><h3>working Out</h3><p>Work out to lose fat. This will sloly get rid of your obesity.</p></div>
+                <div class="info-box"><h3>Body Nutrients</h3><p>Eat more food with a lot of nutrients. Eating food with not a lot of nutrients can give more obesity.</p></div>
             </div>
         </div>
     </div>
@@ -155,9 +164,9 @@
         <div class="content-card">
             <h1 style="font-size: 3rem;">HELP <span>US</span></h1>
             <div class="grid-container">
-                <div class="info-box"><h3>Tell Others</h3><p>Share ObesitySucks with people who need it.</p></div>
-                <div class="info-box"><h3>Support your Community</h3><p>Help others stay healthy. tell them what is good or bad to eat.</p></div>
-                <div class="info-box"><h3>Donate</h3><p>Give things to health programs and fitness programs that you think could be usful to them.</p></div>
+                <div class="info-box"><h3>Spread awareness</h3><p>Share ObesitySucks with people who need it.</p></div>
+                <div class="info-box"><h3>Let Others Know</h3><p>Tell people what obesity can do to to them.</p></div>
+                <div class="info-box"><h3>Donate</h3><p>Give things to health programs and fitness programs that you think can help them.</p></div>
             </div>
         </div>
     </div>
@@ -166,17 +175,17 @@
         <div class="content-card">
             <h1 style="font-size: 3rem;">BE <span>AWARE</span></h1>
             <div class="grid-container">
-                <div class="info-box"><h3>Disease</h3><p>Obesity is a really bad disease. It can cause type 2 diabetes.</p></div>
-                <div class="info-box"><h3>Joint Health</h3><p>Obesity can give you a mobility los. this hurts a lot and will last for a long time.</p></div>
-                <div class="info-box"><h3>Future Impact</h3><p>Unhealthy habits can make you have a lot of pain tomorrow.</p></div>
+                <div class="info-box"><h3>Disease</h3><p>Obesity is a really bad disease and can cause other diseases like diarrhea.</p></div>
+                <div class="info-box"><h3>Health</h3><p>Obesity can give you health issues and a lot of pain.</p></div>
+                <div class="info-box"><h3>Future</h3><p>Unhealthy habits can give you obesity tomarow. obesity can make your future really bad.</p></div>
             </div>
         </div>
     </div>
 
     <div id="auth-choice" class="page">
-        <div class="form-container" style="text-align: center;">
-            <button class="nav-btn" style="color:var(--primary); margin-bottom:20px" onclick="showPage('home')">← Back</button>
-            <h2>GET STARTED</h2>
+        <div class="form-container">
+            <button style="background:none; border:none; color:var(--primary); cursor:pointer; position:absolute; top:20px; left:20px;" onclick="showPage('home')">← Back</button>
+            <h2 style="margin-top:20px;">GET STARTED</h2>
             <button class="submit-btn" onclick="showPage('signin-page')">Sign In</button>
             <button class="submit-btn" style="background:#333; margin-top:15px; box-shadow:none;" onclick="showPage('login-page')">Login</button>
         </div>
@@ -184,8 +193,8 @@
 
     <div id="signin-page" class="page">
         <div class="form-container">
-            <button class="nav-btn" style="color:var(--primary); margin-bottom:20px" onclick="showPage('auth-choice')">← Back</button>
-            <h2>SIGN IN</h2>
+            <button style="background:none; border:none; color:var(--primary); cursor:pointer; position:absolute; top:20px; left:20px;" onclick="showPage('auth-choice')">← Back</button>
+            <h2 style="margin-top:20px;">SIGN IN</h2>
             <input type="text" id="reg-user" placeholder="Make Username" oninput="checkFields('reg')">
             <input type="password" id="reg-pass" placeholder="Make Password" oninput="checkFields('reg')">
             <button id="reg-btn" class="submit-btn" style="background:#444; cursor:not-allowed; box-shadow:none;" onclick="createAccount()">Make Account</button>
@@ -194,8 +203,8 @@
 
     <div id="login-page" class="page">
         <div class="form-container">
-            <button class="nav-btn" style="color:var(--primary); margin-bottom:20px" onclick="showPage('auth-choice')">← Back</button>
-            <h2>LOG IN</h2>
+            <button style="background:none; border:none; color:var(--primary); cursor:pointer; position:absolute; top:20px; left:20px;" onclick="showPage('auth-choice')">← Back</button>
+            <h2 style="margin-top:20px;">LOG IN</h2>
             <input type="text" id="log-user" placeholder="Enter Username" oninput="checkFields('log')">
             <input type="password" id="log-pass" placeholder="Enter Password" oninput="checkFields('log')">
             <button id="log-btn" class="submit-btn" style="background:#444; cursor:not-allowed; box-shadow:none;" onclick="login()">Log In</button>
@@ -204,24 +213,24 @@
 
     <div id="profile-page" class="page">
         <div class="content-card" style="max-width: 600px; text-align: center; position:relative;">
-            <button class="nav-btn" style="color:var(--primary); position:absolute; top:20px; left:20px;" onclick="showPage('home')">← Back</button>
+            <button style="background:none; border:none; color:var(--primary); position:absolute; top:20px; left:20px;" onclick="showPage('home')">← Back</button>
             <h1 style="color:var(--primary); margin-top:40px;">YOUR ACCOUNT</h1>
             <div style="position: relative; display: inline-block; margin: 30px 0;">
-                <img src="https://ui-avatars.com" 
-                     class="profile-main-img" id="profile-pic" 
-                     onerror="this.src='https://w3schools.com'">
+                <img src="https://www.shutterstock.com/image-vector/user-profile-icon-social-media-260nw-2452460729.jpg" class="profile-main-img" id="profile-pic">
                 <button class="plus-btn" onclick="document.getElementById('file-upload').click()">+</button>
                 <input type="file" id="file-upload" style="display:none" onchange="uploadImage(this)">
             </div>
             <div style="font-size: 1.5rem; letter-spacing: 1px;">
                 <p>User: <span id="display-user" style="color:var(--primary)"></span></p>
                 <p>Pass: <span id="display-pass" style="color:var(--primary)"></span></p>
+                <button class="signout-btn" onclick="signOut()">Sign Out</button>
             </div>
         </div>
     </div>
 
     <script>
         let savedUser = ""; let savedPass = ""; let isLoggedIn = false;
+        const defaultImg = "https://flaticon.com";
 
         function showPage(p) { 
             document.querySelectorAll('.page').forEach(x => x.classList.remove('active')); 
@@ -259,8 +268,14 @@
             } else {
                 if(u.value !== savedUser) { u.value = ""; u.placeholder = "Incorrect Username"; u.classList.add('error-input'); }
                 if(p.value !== savedPass) { p.value = ""; p.placeholder = "Incorrect Password"; p.classList.add('error-input'); }
-                checkFields('log');
             }
+        }
+
+        function signOut() {
+            isLoggedIn = false;
+            document.getElementById('profile-pic').src = defaultImg;
+            document.getElementById('nav-icon').src = defaultImg;
+            showPage('home');
         }
 
         function uploadImage(input) { if (input.files && input.files[0]) { let r = new FileReader(); r.onload = function(e) { document.getElementById('profile-pic').src = e.target.result; document.getElementById('nav-icon').src = e.target.result; }; r.readAsDataURL(input.files[0]); } }

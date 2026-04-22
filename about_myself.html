@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JUGAAD | Personal Portfolio</title>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; font-size: 16px; }
+      
+      :root {
+        --bg:        #04080f;
+        --surface:   #0a121e;
+        --card:      rgba(17, 29, 46, 0.4);
+        --border:    rgba(0, 212, 255, 0.2);
+        --accent:    #00d4ff;
+        --green:     #00ff88;
+        --text:      #e2eaf4;
+        --muted:     #7a9bbf;
+        --nav-h:     85px;
+        --radius:    16px;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: 'Space Grotesk', sans-serif;
+        min-height: 100vh;
+        background-image: 
+          radial-gradient(circle at 50% -20%, rgba(0, 212, 255, 0.1), transparent),
+          radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+        background-size: 100% 100%, 30px 30px;
+      }
+      .navbar {
+        position: sticky; top: 0; z-index: 1000;
+        height: var(--nav-h);
+        background: rgba(4, 8, 15, 0.8);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border);
+        display: flex; align-items: center;
+      }
+
+      .navbar-wrapper {
+        max-width: 1200px; width: 100%;
+        margin: 0 auto; padding: 0 2rem;
+        display: flex; justify-content: space-between; align-items: center;
+      }
+
+      .logo {
+        font-family: 'Orbitron'; font-weight: 900; font-size: 1.3rem;
+        background: linear-gradient(to right, var(--accent), var(--green));
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        letter-spacing: 2px;
+      }
+
+      .navbar-nav { display: flex; gap: 2rem; align-items: center; }
+
+      .nav-link {
+        color: var(--muted); font-size: 0.85rem; font-weight: 600;
+        text-transform: uppercase; letter-spacing: 1px; text-decoration: none;
+        transition: 0.3s;
+      }
+      .nav-link:hover { color: var(--accent); }
+
+      .hero { max-width: 1100px; margin: 100px auto 60px; padding: 0 2rem; text-align: center; }
+      .hero h1 { font-family: 'Orbitron'; font-size: clamp(2.5rem, 8vw, 4rem); margin-bottom: 20px; color: #fff; }
+      .hero h1 em { font-style: normal; color: var(--green); }
+      .hero p { color: var(--muted); font-size: 1.1rem; max-width: 650px; margin: 0 auto; line-height: 1.7; }
+
+      .stats-bar {
+        max-width: 1100px; margin: 0 auto 80px;
+        display: grid; grid-template-columns: repeat(3, 1fr);
+        background: var(--border); gap: 1px; border-radius: var(--radius); overflow: hidden;
+      }
+      .stat { background: var(--surface); padding: 2rem; text-align: center; }
+      .stat-num { font-family: 'Orbitron'; font-size: 1.8rem; color: var(--accent); }
+      .stat-label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; margin-top: 5px; }
+
+      .principles-grid {
+        max-width: 1100px; margin: 0 auto 100px;
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 30px; padding: 0 2rem;
+      }
+
+      .card {
+        background: var(--card); border: 1px solid rgba(255,255,255,0.05);
+        border-radius: var(--radius); padding: 40px;
+        transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+      .card:hover { transform: translateY(-8px); border-color: var(--green); background: rgba(17, 29, 46, 0.7); }
+      .card-icon { font-family: 'Orbitron'; color: var(--accent); font-size: 0.8rem; display: block; margin-bottom: 10px; }
+      .card h3 { font-family: 'Orbitron'; margin-bottom: 15px; color: #fff; }
+      .card p { color: var(--muted); font-size: 0.95rem; line-height: 1.6; }
+
+      footer {
+        padding: 60px 2rem; text-align: center;
+        border-top: 1px solid var(--border);
+      }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="navbar-wrapper">
+            <div class="logo">JUGAAD</div>
+            <div class="navbar-nav">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#work" class="nav-link">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <main id="home">
+        <section class="hero">
+            <h1><em>Jugaad</em></h1>
+            <p>Jugaad is about doing fun stuff. At the same time he can be very serious. He wants to be a scientist when he is older.</p>
+        </section>
+
+        <section class="stats-bar">
+            <div class="stat">
+                <div class="stat-num">100%</div>
+                <div class="stat-label">Super Fun</div>
+            </div>
+            <div class="stat">
+                <div class="stat-num">MAX</div>
+                <div class="stat-label">Loving</div>
+            </div>
+            <div class="stat">
+                <div class="stat-num">Medium</div>
+                <div class="stat-label">serious</div>
+            </div>
+        </section>
+
+        <section class="principles-grid" id="work">
+            <div class="card">
+                <span class="card-icon">About Me 1</span>
+                <h3>Fun</h3>
+                <p>I am super fun. I love to have fun. A thing I do to have fun is play Roblox. Somthing thing I do to have fun is that I watch movies with my family. I also play basketball and I enjoy it. </p>
+            </div>
+            <div class="card">
+                <span class="card-icon">About Me 2</span>
+                <h3>Loving</h3>
+                <p>I can get mad time to time but am really loving. I will give somene a hug and support thm if they are sad, unless iam mad at them. I will also help someone if they need help in something.</p>
+            </div>
+            <div class="card">
+                <span class="card-icon">About Me 3</span>
+                <h3>Serious</h3>
+                <p>Sometimes if I am doing work and want to get a good grade I get real serious. I can also get serious if I am doing somthing I really want to get done. Even when I am serious I am still in a little of a funny mood.</p>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>

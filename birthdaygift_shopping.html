@@ -1,0 +1,143 @@
+<html>
+<head>
+    <style>
+        :root {
+            --primary: blue;
+            --secondary: darkblue;
+            --bg: lightblue;
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg); margin: 0; color: #333; }
+        header { background: var(--primary); color: white; padding: 2rem; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        
+        .container { max-width: 1000px; margin: auto; padding: 20px; display: grid; grid-template-columns: 1fr 350px; gap: 20px; }
+        @media (max-width: 768px) { .container { grid-template-columns: 1fr; } }
+
+        /* Shop Section */
+        .gift-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+        .gift-card { background: white; border-radius: 15px; padding: 1.5rem; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: 0.3s; }
+        .gift-card:hover { transform: translateY(-5px); box-shadow: 0 8px 15px rgba(0,0,0,0.1); }
+        .gift-card h3 { margin: 10px 0; color: var(--secondary); }
+        .price { font-weight: bold; font-size: 1.2rem; display: block; margin-bottom: 10px; }
+        
+        /* Cart & Checkout Section */
+        .sidebar { background: white; padding: 20px; border-radius: 15px; height: fit-content; position: sticky; top: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .cart-item { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding: 10px 0; }
+        .total-section { margin-top: 20px; border-top: 2px solid var(--primary); padding-top: 10px; font-weight: bold; font-size: 1.2rem; }
+        
+        /* Form Styling */
+        input { width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
+        button { background: var(--primary); color: white; border: none; padding: 12px 20px; border-radius: 25px; cursor: pointer; font-weight: bold; width: 100%; transition: 0.2s; }
+        button:hover { background: var(--secondary); }
+        .remove-btn { background: #eee; color: #666; width: auto; padding: 2px 8px; font-size: 0.8rem; border-radius: 4px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🎉 Birthday Surprise Shop</h1>
+    <p>Select the perfect gifts and checkout instantly!</p>
+</header>
+
+<div class="container">
+    <section>
+        <h2>Featured Gifts</h2>
+        <div class="gift-grid">
+            <div class="gift-card">
+                <h3>🧸 Teddy Bear</h3>
+                <span class="price">$15.00</span>
+                <button onclick="addToCart('Teddy Bear', 15.00)">Add to Cart</button>
+            </div>
+            <div class="gift-card">
+                <h3>🎈 Balloon Set</h3>
+                <span class="price">$10.00</span>
+                <button onclick="addToCart('Balloon Set', 10.00)">Add to Cart</button>
+            </div>
+            <div class="gift-card">
+                <h3>🎂 Mini Cake</h3>
+                <span class="price">$25.00</span>
+                <button onclick="addToCart('Mini Cake', 25.00)">Add to Cart</button>
+            </div>
+            <div class="gift-card">
+                <h3>🍫 Chocolates</h3>
+                <span class="price">$12.00</span>
+                <button onclick="addToCart('Chocolates', 12.00)">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <aside class="sidebar">
+        <h3>🛒 Your Cart</h3>
+        <div id="cart-items">
+            <p style="color: #999; font-style: italic;">Your cart is empty</p>
+        </div>
+        
+        <div class="total-section">
+            Total: $<span id="total-price">0.00</span>
+        </div>
+
+        <hr>
+
+        <h3>🚚 Delivery Info</h3>
+        <form id="checkout-form" onsubmit="handleCheckout(event)">
+            <input type="text" placeholder="Full Name" required>
+            <input type="email" placeholder="Email Address" required>
+            <input type="text" placeholder="Shipping Address" required>
+            <button type="submit" style="margin-top: 15px;">Complete Purchase</button>
+        </form>
+    </aside>
+</div>
+
+<script>
+    let cart = [];
+    let total = 0;
+
+    function addToCart(name, price) {
+        cart.push({ name, price });
+        updateUI();
+    }
+
+    function removeFromCart(index) {
+        cart.splice(index, 1);
+        updateUI();
+    }
+
+    function updateUI() {
+        const cartDiv = document.getElementById('cart-items');
+        const totalSpan = document.getElementById('total-price');
+        
+        if (cart.length === 0) {
+            cartDiv.innerHTML = '<p style="color: #999; font-style: italic;">Your cart is empty</p>';
+            total = 0;
+        } else {
+            cartDiv.innerHTML = '';
+            total = 0;
+            cart.forEach((item, index) => {
+                total += item.price;
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'cart-item';
+                itemDiv.innerHTML = `
+                    <span>${item.name}</span>
+                    <span>$${item.price.toFixed(2)} 
+                        <button class="remove-btn" onclick="removeFromCart(${index})">x</button>
+                    </span>
+                `;
+                cartDiv.appendChild(itemDiv);
+            });
+        }
+        totalSpan.innerText = total.toFixed(2);
+    }
+
+    function handleCheckout(event) {
+        event.preventDefault();
+        if (cart.length === 0) {
+            alert("Your cart is empty! Add some gifts first.");
+            return;
+        }
+        alert(`🎉 Thank you for your order! Total: $${total.toFixed(2)}\nYour birthday gifts are on the way!`);
+        cart = [];
+        document.getElementById('checkout-form').reset();
+        updateUI();
+    }
+</script>
+</body>
+</html>

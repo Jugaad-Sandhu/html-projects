@@ -244,7 +244,7 @@
         padding-bottom: 1rem;
         scroll-snap-type: x mandatory;
        -webkit-overflow-scrolling: touch;
-}
+      }
 
       .cards-scroll::-webkit-scrollbar { height: 5px; }
       .cards-scroll::-webkit-scrollbar-track { background: var(--surface); border-radius: 10px; }
@@ -261,7 +261,165 @@
         transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
         display: flex;
         flex-direction: column;
-}
+      }
+      .card:hover {
+        transform: translateY(-6px);
+        border-color: var(--accent);
+        box-shadow: 0 12px 40px rgba(0,212,255,0.15);
+      }
+      .card img {
+        height: 170px;
+        object-fit: cover;
+        transition: transform 0.4s;
+      }
+      .card:hover img { transform: scale(1.04); }
+
+      .card-body { padding: 1.1rem 1.2rem 1.4rem;
+         flex: 1; 
+         display: flex; 
+         flex-direction: column;
+         gap: 0.5rem;
+         }
+      .card-tag {
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--accent);
+        background: rgba(0, 212, 255, 0.1);
+        border: 1px solid rgba(0,212,255,0.2);
+        border-radius: 100px;
+        padding: 0.2rem 0.7rem;
+        display: inline-block;
+        width: fit-content;
+      }
+      .card h3 {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #fff;
+        line-height: 1.3;
+      }
+      .card h3 a { color: inherit; transition: color 0.2s; }
+      .card h3 a:hover { color: var(--accent); }
+
+      .card p {
+        font-size: 0.83rem;
+        color: var(--muted);
+        line-height: 1.6;
+        flex: 1;
+      }
+      .card-link {
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        transition: gap 0.2s;
+        margin-top: 0.4rem;
+      }
+      .card-link:hover { gap: 0.6rem; }
+      .section-wrapper h2 {
+        font-family: 'Orbitron', sans-serif;
+        font-size: clamp(1.2rem, 2.5vw, 1.7rem);
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+      }
+      .section-wrapper h2::before {
+        content: '';
+        display: inline-block;
+        width: 4px;
+        height: 1.4em;
+        background: linear-gradient(180deg, var(--accent), var(--accent2));
+        border-radius: 4px;
+        flex-shrink: 0;
+      }
+      .section-wrapper {
+        max-width: 1280px;
+        margin: 3rem auto;
+        padding: 0 2rem;
+      }
+      .tips-grid{
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 1.2rem;
+      }
+      .tips-card{
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+        transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+        cursor: default;
+      }
+      .tip-card:hover {
+        border-color: var(--green);
+        box-shadow: 0 8px 30px rgba(0, 255, 136, 0.1);
+        transform: translateY(-4px)
+      }
+      .tip-icon {
+        font-size: 2rem;
+        line-height: 1;
+      }
+      .tip-card h3 {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #fff;
+      }
+      .tip-card p {
+        font-size: 0.82rem;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+      .alert-banner {
+        max-width: 1280px;
+        margin: 0 auto 3rem;
+        padding: 0 2rem;
+      }
+      .alert-inner {
+        background: linear-gradient(135deg, rgba(255,59,107,0.12), rgba(255,59,107,0.04));
+        border: 1px solid rgba(255,59,107,0.35);
+        border-radius: var(--radius);
+        padding: 1.4rem 2rem;
+        display: flex;
+        align-items:center;
+        gap: 1.2rem;
+        flex-wrap:wrap;
+      }
+      .alert-icon { font-size: 2rem; flex-shrink: 0; }
+      .alert-text { flex: 1; min-width: 200px; }
+      .alert-text strong { display: block; font-size: 1rem; color: var(--accent2); margin-bottom: 0.3rem; font-weight: 700; }
+      .alert-text p { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
+      .btn-danger {
+        background: var(--accent2);
+        color: #fff;
+        border-color: var(--accent2);
+        flex-shrink: 0;
+      }
+      .btn-danger:hover {
+        background: transparent;
+        color: var(--accent2);
+        box-shadow: 0 0 20px rgba(255,59,107,0.4);
+      }
+      footer {
+        border-top: 1px solid var(--border);
+         background: var(--surface);
+         padding: 2.5rem 2rem;
+         text-align: center;
+         color: var(--muted);
+         font-size: 0.82rem;
+      }
+      footer strong {color: var(--accent)}
+</style>
 </style>
     </head>
     <body>
@@ -366,8 +524,45 @@
 
 
        </div><!-- /.cards-scroll -->
+      
      </section>
+        <section class="section-wrapper" id="tips">
+        <h2>3 Simple Rules to Stay Safe 🧠</h2>
+        <div class="tips-grid">
 
-</main>
+          <div class="tip-card">
+            <div class="tip-icon">🔑</div>
+            <h3>Use Strong Passwords</h3>
+            <p>Make your password long and tricky — mix letters, numbers and symbols. Never share it with anyone!</p>
+          </div>
+
+          <div class="tip-card">
+            <div class="tip-icon">🚫</div>
+            <h3>Keep Info Private</h3>
+            <p>Don't tell strangers your name, address, or school online — even if they seem nice.</p>
+          </div>
+
+          <div class="tip-card">
+            <div class="tip-icon">🗣️</div>
+            <h3>Talk to a Grown-Up</h3>
+            <p>If something online feels weird or scary, tell a parent or teacher straight away. You won't be in trouble!</p>
+          </div>
+
+        </div>
+      </section>
+      <div class="alert-banner">
+        <div class="alert-inner">
+          <div class="alert-icon">⚠️</div>
+          <div class="alert-text">
+            <strong>⚠️ Watch out for Cyberbullying!</strong>
+            <p>1 in 3 kids online has been bullied. If it happens to you — tell an adult. It's never your fault.</p>
+          </div>
+          <a href="#" class="btn btn-danger">Get Help Guide</a>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <p>© 2026 <strong>CyberKids</strong> — Helping kids stay safe online, one story at a time. 💙</p>
+    </footer>
     </body>
 </html>
