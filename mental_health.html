@@ -1,0 +1,22 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <h1>FOCUS ON BREATHING</h1>
+        <div class="circle" id="lbl">Inhale</div>
+        <p>Inhale • Hold • Exhale</p>
+        <audio id="a" autoplay loop 
+        src="https://cdn.pixabay.com/audio/2022/05/27/audio_1808fbf07a.mp3">
+            </audio>
+            <div class="btns">
+            <button onclick="a.src='https://cdn.pixabay.com/audio/2022/05/27/audio_1808fbf07a.mp3';a.play()">🌧️ Rain</button>
+            <button onclick="a.src='https://cdn.pixabay.com/audio/2022/03/15/audio_8cb3a32f03.mp3';a.play()">🌊 Beach</button>
+            <button onclick="a.src='https://cdn.pixabay.com/audio/2021/10/19/audio_5c5218e469.mp3';a.play()">🌿 Nature</button>
+        </div>
+        <div style="display:flex;gap:12px;align-items:center">
+            <button onclick="a.paused ? a.play() : a.pause">⏯️</button>
+            <input type="range" min="0" max="100" value="100"
+            oninput="a.volume = this.value / 100">
+        </div>
+    </body>
+</html>
